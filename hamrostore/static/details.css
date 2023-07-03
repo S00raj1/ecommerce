@@ -1,0 +1,22 @@
+.details{
+    max-width: 100%;
+    max-height: 600px;
+    margin: 10px;
+    border: 2px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-items: center;
+    box-shadow: 2px 4px 2px 2px rgb(194, 182, 182);
+    padding: 40px;
+}
+
+.details img{
+    min-height: 400px;
+    max-width: 95%;
+    box-shadow: 4px 4px 4px 4px rgb(156, 152, 152);
+}
+h3 a{
+    text-decoration: none;
+    color: red;
+}

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block header %}
+<link rel="stylesheet" href="/static/details.css">
+{% endblock header %}
+
+{% block content %}
+
+<div class="details">
+    <img src="{{detail.image.url}}">
+    <h4>{{detail.title}}</h4>
+    <p>${{detail.price}}</p>
+    <p class="disc">{{detail.description}}</p>
+    <hr style="width: 100%;">
+    <div>
+        <button>Buy now</button>
+        <button>Add to cart</button>
+    </div>
+</div>
+<h3><a href="{% url 'home' %}"> &larr; go to previous page</a></h3>
+
+{% endblock %}

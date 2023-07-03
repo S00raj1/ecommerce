@@ -1,0 +1,75 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>            
+    <link rel="stylesheet" href="/static/main.css">
+    <title>{{title}}</title>
+    {% block header %}{% endblock %}
+    <style>
+        li{
+            padding: 20px;
+        }
+        .search-form,button{
+            margin-right: 20px;
+            margin-top: 40px;
+        } 
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}"> Home </a></li>
+                <li><a href="{% url 'category' %}"> Category </a></li>
+                <li><a href="{% url 'about' %}"> About us </a></li>
+                <li><a href="{% url 'contact' %}"> Contact us </a></li>
+            </ul>
+        </nav>
+        <div class="right">
+            <div class="search-form">
+                <form action="{% url 'search' %}" method="get">
+                    <input type="text" name="search" required>
+                    <input type="submit" value="search">
+                </form>
+            </div>
+            <div class="login">
+                <button>Login</button>
+            </div>
+        </div>
+
+    </header>
+
+    {% block content %}
+    {% endblock %}
+    <footer class="foot" style="height: 200px; display: flex; justify-content: center;">
+        <div class="footer-data" style="display: flex; color: white; justify-content: space-between;">
+            <div class="icon" style="display: flex; width: 200px;">
+                <img src="" alt="icon loading">
+                <p>HamroStore</p>
+            </div>
+            <div class="developers" style="width: 200px;">
+                <h3>Developer</h3>
+                <p>Developers & Developing </p>
+            </div>
+            <div class="company" style="width: 200px;">
+                <h3>Company</h3>
+                <p>About us</p>
+                <p>Contact us</p>
+            </div>
+            <div class="connect" style="display: flex; flex-direction: column; width: 200px;" >
+                <i class='fa fa-facebook-official' style='color: blue'>Facebook</i> 
+                <i class='fa fa-instagram' style='color: red'>Instagram</i>
+                <i class='fa fa-twitter' style='color: blue'>Twitter</i>  
+            </div>
+        </div>
+        <div>
+            <p>privacy & terms</p>
+        </div>
+    </footer>
+</body>
+</html>

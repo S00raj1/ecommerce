@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block header %}
+<link rel="stylesheet" href="/static/home.css">
+{% endblock %}
+{% block content %}
+    <h2>You searched for</h2>
+    {% for item in object_list %}
+    <div class="item">
+        <img class="item-img" src="{{item.image.url}}" alt="">
+        <h5>{{item.title}}</h5>
+        <p>{{item.preview_text}}</p>
+        <p>{{item.category}}</p>
+        <button>Buy now</button>
+        <button>Add to cart</button>
+    </div>
+    {% endfor %}
+{% endblock %}

@@ -1,0 +1,41 @@
+body{
+    padding: 0%;
+    margin: 0%;
+    font-family: sans-serif;
+    background-color: #E2E8F0;
+}
+
+body header{
+    display: flex;
+    justify-content: space-between;
+    background-color: #1E293B;
+    width: 100%;
+}
+ul{
+    display: flex;
+    justify-content: space-between;
+}
+ul li {
+    
+    list-style: none;
+}
+li a{
+    color:white;
+    text-decoration: none;
+}
+li a:hover{
+    color: rgb(189, 173, 173);
+}
+.right{
+    display: flex;
+    justify-content: space-around;
+}
+
+.foot{
+    background-color: #1E293B;
+    
+    width: 100%;
+}
+
+/* Dropdown nav  */
+

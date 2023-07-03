@@ -1,0 +1,31 @@
+
+
+{% extends 'base.html' %}
+{% block header %}
+<link rel="stylesheet" href="/static/home.css">
+{% endblock header %}
+
+{% block content %}
+
+{% for category in category %}
+<h2 style="text-align: center; color:#1E293B;">Category: {{category.title}}</h2>
+<hr style="color: #1E293B;">
+<div class="container">
+    {% for i in item %}
+    {% if i.category.title == category.title %}
+    <div class="item">
+        <img class="item-img" src="{{i.image.url}}" >
+        <h5>{{i.title}}</h5>
+        <p>${{i.price}}</p>
+        <p>{{i.preview_text}}</p>
+        <p><a href="{% url 'detail' i.id %}">view details</a></p>
+        <button>Buy now</button>
+        <button><a href="{% url 'cart'  %}" style="text-decoration: none;">Add to cart</a></button>
+    </div>
+    {% endif %}
+    {% endfor %}
+</div>
+<hr>
+{% endfor %}
+
+{% endblock %}
