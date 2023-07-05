@@ -9,5 +9,8 @@ urlpatterns = [
     path('contact/', views.contact, name="contact"),
     path('search/',SearchResultsView.as_view(),name="search"),
     path('detail/<int:id>',views.detail,name='detail'),
-    path('cart/',views.add_to_cart,name="cart"),
+    path('cart/<int:id>',views.add_to_cart,name="cart"),
+    path('cart-view/',views.cartView,name='cartview'),
+    path('remove/<int:id>',views.remove_from_cart,name='remove'),
+    path('checkout/',views.checkout,name="checkout"),
 ]

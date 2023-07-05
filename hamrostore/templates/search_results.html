@@ -3,15 +3,16 @@
 <link rel="stylesheet" href="/static/home.css">
 {% endblock %}
 {% block content %}
-    <h2>You searched for</h2>
+<div class="main" style="max-height:100% ;">
+    <h2>You searched for {{query}}</h2>
     {% for item in object_list %}
     <div class="item">
         <img class="item-img" src="{{item.image.url}}" alt="">
         <h5>{{item.title}}</h5>
         <p>{{item.preview_text}}</p>
         <p>{{item.category}}</p>
-        <button>Buy now</button>
-        <button>Add to cart</button>
+        <button style="width: 200px; height: 40px; background-color: green; border: none;"> <a href="{% url 'cart' item.id %}" style="text-decoration: none; color: white;">Add to cart</a></button>
     </div>
     {% endfor %}
+</div>
 {% endblock %}

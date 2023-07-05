@@ -15,9 +15,15 @@
             padding: 20px;
         }
         .search-form,button{
-            margin-right: 20px;
+            margin-right: 60px;
             margin-top: 40px;
         } 
+        svg{
+            position: absolute;
+            top: 35px;
+            right: 125px;
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -25,7 +31,7 @@
         <nav>
             <ul>
                 <li><a href="{% url 'home' %}"> Home </a></li>
-                <li><a href="{% url 'category' %}"> Category </a></li>
+                <li><a href="{% url 'home' %}"> Category </a></li>
                 <li><a href="{% url 'about' %}"> About us </a></li>
                 <li><a href="{% url 'contact' %}"> Contact us </a></li>
             </ul>
@@ -37,20 +43,29 @@
                     <input type="submit" value="search">
                 </form>
             </div>
-            <div class="login">
-                <button>Login</button>
+            <div class="cart">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="30" viewBox="0 0 512 512"> <a href="{% url 'cartview' %}" style="text-decoration: none; color:white;"><path fill="currentColor" d="M160 96.039v32h304v63.345l-35.5 112.655H149.932L109.932 16H16v32h66.068l40 288.039h329.9L496 196.306V96.039H160zm16.984 272.305a64.073 64.073 0 0 0-64 64a64 64 0 0 0 128 0a64.072 64.072 0 0 0-64-64Zm0 96a32 32 0 1 1 32-32a32.038 32.038 0 0 1-32 32Zm224-96a64.073 64.073 0 0 0-64 64a64 64 0 0 0 128 0a64.072 64.072 0 0 0-64-64Zm0 96a32 32 0 1 1 32-32a32.038 32.038 0 0 1-32 32Z"/></a> </svg>
             </div>
+            {% if request.user.is_authenticated %}
+            <div class="login">
+                <button> <a href="{% url 'logout' %}" style="text-decoration: none; color: black;">logout</a></button>
+            </div>
+            {% else %}
+            <div class="login">
+                <button> <a href="{% url 'login' %}" style="text-decoration: none; color: black;">login</a></button>
+            </div>
+
+            {% endif %}
         </div>
 
     </header>
 
     {% block content %}
     {% endblock %}
-    <footer class="foot" style="height: 200px; display: flex; justify-content: center;">
+    <footer class="foot" style="height: 200px; margin-top: 40px; display: flex; flex-direction: column; justify-content: center; ">
         <div class="footer-data" style="display: flex; color: white; justify-content: space-between;">
             <div class="icon" style="display: flex; width: 200px;">
-                <img src="" alt="icon loading">
-                <p>HamroStore</p>
+                <img src="" alt="icon loading..">HamroStore
             </div>
             <div class="developers" style="width: 200px;">
                 <h3>Developer</h3>

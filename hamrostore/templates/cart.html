@@ -1,51 +1,59 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block header %}
-<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>            
-<link rel="stylesheet" href="/static/css/cart.css">
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>     
 {% endblock %}
 {% block content %}
-<div class="body">
+<div class="body" style="margin-bottom: 40px;">
 <div class="cart" style="max-width: 100%; border: 2px solid black; margin: 40px; padding: 20px;">
     <h3> <a href="{% url 'home' %}" style="text-decoration: none; color: black;">&larr; Continue shopping</a> </h3>
     <hr >
-    <p>Shopping cart</p>
+    <h3>Shopping cart</h3>
     <div class="header" style="display: flex; justify-content: space-between;">
         <p>You have {{i.len}} in your cart</p>
         <p>Sort by: price&and;</p>
     </div>
-    <div class="products" style="display: flex; box-shadow: 2px 2px 1px 1px rgb(206, 197, 197); margin: 15px; justify-content: space-between; padding-left: 10px; padding-right: 10px;">
-        <img src="{% static 'images/bike.jpg' %}" style="width: 50px; height: 50px;">
-        <p>Harley Davidson</p>
-        <p>2</p>
-        <p>$900</p>
-        <p class="fa fa-trash-o"></p>
+    <hr>
+    <div class="products" style="display: flex; margin: 15px;  box-shadow: 2px 2px 1px 1px rgb(206, 197, 197); justify-content: space-between; padding-left: 10px; padding-right: 10px;">
+        <p style="width: 100px; text-align:left;">Image</p>
+        <p style="width: 100px; text-align: left;">Name</p>
+        <p style="width: 100px; text-align: left;">Quantity</p>
+        <p style="width: 100px; text-align: left;">Price</p>
+        <p style="width: 100px; text-align: left;">Total</p>
+        <div class="add" style="display: flex; width: 105px;">
+            <p style=" text-align: left;">Add</p>
+            <p style=" text-align: left;padding-left: 10px;">Remove</p>
+
+        </div>
     </div>
-   
+    {% for item in item %}
     <div class="products" style="display: flex; box-shadow: 2px 2px 1px 1px rgb(206, 197, 197); margin: 15px; justify-content: space-between; padding-left: 10px; padding-right: 10px;">
-        <img src="{% static 'images/bike.jpg' %}" style="width: 50px; height: 50px;">
-        <p>Harley Davidson</p>
-        <p>2</p>
-        <p>$900</p>
-        <p class="fa fa-trash-o"></p>
+        <img src="{{item.item.image.url}}" style="width: 50px; height: 50px;">
+        <p style="width: 100px; text-align: center;">{{item.item.title}}</p>
+        <p style="width: 100px; text-align: center;">{{item.quantity}}</p>
+        <p style="width: 100px; text-align: center;">{{item.item.price}}</p>
+        <p style="width: 100px; text-align: center;">{{item.get_total | floatformat:2 }}</p>
+        <div class="icons" style="display: flex; width: 100px;">
+            <p><a href="{% url 'cart' item.item.id %}" style="cursor: pointer;"><iconify-icon icon="streamline:interface-add-1-expand-cross-buttons-button-more-remove-plus-add" style="color: green;"></iconify-icon></a></p>
+            <hr style="height: 40px;">
+           <p><a href="{% url 'remove' item.item.id %}"> <i style="color: red;" class="fa fa-trash-o"></i></a></p>
+        </div>
     </div>
+   {% endfor %}
+    
+   <div class="total-section" style="display: flex; box-shadow: 2px 2px 2px 2px rgb(206, 197, 197); justify-content: space-evenly;">
+    <p style="width: 100px; text-align: center;"></p>
+    <p style="width: 100px; text-align: center;">Total</p>
+    <p style="width: 100px; text-align: center;"></p>
+    <p style="width: 100px; text-align: center;"></p>
+    <p style="width: 100px; text-align: center;"></p>
+    <p style="width: 100px;  text-align: center;">{{total}}</p>
+    <p style="width: 100px; text-align: center;"></p>
+   </div>
+   <br>
    
-    <div class="products" style="display: flex; box-shadow: 2px 2px 1px 1px rgb(206, 197, 197); margin: 15px; justify-content: space-between; padding-left: 10px; padding-right: 10px;">
-        <img src="{% static 'images/bike.jpg' %}" style="width: 50px; height: 50px;">
-        <p>Harley Davidson</p>
-        <p>2</p>
-        <p>$900</p>
-        <p class="fa fa-trash-o"></p>
-    </div>
-   
-    <div class="products" style="display: flex; box-shadow: 2px 2px 1px 1px rgb(206, 197, 197); margin: 15px; justify-content: space-between; padding-left: 10px; padding-right: 10px;">
-        <img src="{% static 'images/bike.jpg' %}" style="width: 50px; height: 50px;">
-        <p>Harley Davidson</p>
-        <p>2</p>
-        <p>$900</p>
-        <p class="fa fa-trash-o"></p>
-    </div>
-   
+   <h3 style="text-align: right;"> <a href="{% url 'checkout' %}" style="text-decoration: none; color: black;">Proceed to checkout &rarr;</a> </h3>
 </div>
 </div>
 {% endblock %}

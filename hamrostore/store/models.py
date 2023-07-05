@@ -28,18 +28,49 @@ class Product(models.Model):
 class Cart(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE)
     item = models.ForeignKey(Product,on_delete=models.CASCADE)
-    quantity = models.IntegerField()
+    quantity = models.IntegerField(default=1)
     created = models.DateTimeField(auto_now_add=True)
+    is_active = models.BooleanField(default=True)
 
     def __str__(self):
-        return f'{self.quantity} of {self.item.name}'
+        return f'{self.quantity} of {self.item.title}'
 
+
+    def get_total(self):
+        return self.item.price * self.quantity
+    
+    def price_total(self):
+        total = 1
+        return self.total + get_total
+    
+    class Meta:
+        ordering = ('id',)
 
 class Order(models.Model):
     orderitems = models.ManyToManyField(Cart)
     user = models.ForeignKey(User,on_delete=models.CASCADE)
     ordered = models.BooleanField(default=False)
     created = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.user.username
+
+    def get_total(self):
+        total = 0
+        for order_item in self.orderitems.all():
+            total += order_item.get_total()
+
+        return total
+
+class ShippingInformation(models.Model):
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    order = models.ForeignKey(Order,on_delete=models.CASCADE,null=True,blank=True)
+    state = models.CharField(max_length=250,null=False,blank=False)
+    district = models.CharField(max_length=250,null=False,blank=False)
+    city = models.CharField(max_length=250,null=False,blank=False)
+    house = models.CharField(max_length=250,null=True,blank=True)
+    phone = models.CharField(max_length=250,null=False,blank=False)
+    phone1 = models.CharField(max_length=250,null=True,blank=True)
 
     def __str__(self):
         return self.user.username

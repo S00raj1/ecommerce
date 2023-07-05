@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% block header %}
+<link rel="stylesheet" href="/static/css/checkout.css">
+{% endblock %}
+{% block content %}
+<div class="checkout">
+    <h2>Shipping Address</h2>
+    <div id="shipping-form">
+        <form id="form" >
+            <div class="inner-form">
+                <label for="province">Province<span>*</span></label>
+                <input type="text" name="province" placeholder="Enter your province" required>
+            </div>
+
+            <div class="inner-form">
+                <label for="district">District<span>*</span></label>
+                <input type="text" name="district" placeholder="Enter your district" required>
+            </div>
+
+            <div class="inner-form">
+                <label for="city">City<span>*</span></label>
+                <input type="text" name="city" placeholder="Enter your city" required>
+            </div>
+
+            <div class="inner-form">
+                <label for="house">House number</label>
+                <input type="text" name="house" placeholder="Enter your house number" >
+            </div>
+            
+            <div class="inner-form">
+                <label for="phone1">Phone number<span>*</span></label>
+                <input type="text" name="phone1" placeholder="Enter your phone number" required>
+            </div>
+            <div class="inner-form">
+                <label for="phone2">Phone number2</label>
+                <input type="text" name="phone2" placeholder="Enter your phone number">
+            </div>
+            <div class="submit">
+                <input id="form-button" type="submit" value="Submit Form">
+            </div>
+
+
+        </form>
+        <hr >
+        <div class="summary">
+            <div class="items" style="display: flex; flex-direction: column;">
+                {% for item in item %}
+                    <img src="{{item.item.image.url}}" style="width: 50px; height: 50px;">
+                    <p>{{item.item.title}}</p>
+                    {% endfor %}
+                    <p>{{total}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="payment-form hidden" id="payment-info">
+        <div class="inner">
+            <p>Khalti</p>
+            <button>Make Payment</button>
+        </div>
+    </div>
+
+</div>
+<script type="text/javascript">
+    var form = document.getElementById('form')
+    
+    form.addEventListener('submit',function(e){
+        e.preventDefault()
+        console.log('form submitted')
+        document.getElementById('form-button').classList.add('hidden');
+        document.getElementById('payment-info').classList.remove('hidden');
+    })
+</script>
+{% endblock %}

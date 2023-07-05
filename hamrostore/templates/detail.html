@@ -12,10 +12,9 @@
     <p class="disc">{{detail.description}}</p>
     <hr style="width: 100%;">
     <div>
-        <button>Buy now</button>
-        <button>Add to cart</button>
+        <button style="background-color: green; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer;"> <a href="{% url 'cart' detail.id %}" style="text-decoration: none; color:white;"> Add to cart</a></button>
     </div>
 </div>
-<h3><a href="{% url 'home' %}"> &larr; go to previous page</a></h3>
+<h3><a href="{% url 'home' %}" style="color: black;"> &larr; go to previous page</a></h3>
 
 {% endblock %}

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #E2E8F0;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h2 {
+      text-align: center;
+    }
+
+    form {
+      max-width: 400px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      margin-bottom: 10px;
+    }
+
+    input[type="submit"] {
+      background-color: #4CAF50;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+
+    .signup-link,
+    .forgot-password-link {
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    .signup-link a,
+    .forgot-password-link a {
+      color: #4CAF50;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <h2>Login</h2>
+  <form method="post">
+    {% csrf_token %}
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="uname" required>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="pass1" required>
+
+    <input type="submit" value="Log In">
+
+    <div class="signup-link">
+      <a href="{% url 'signup' %}">Don't have an account? Sign up</a>
+    </div>
+
+    <div class="forgot-password-link">
+      <a href="{% url 'forgotpassword' %}">Forgot password?</a>
+    </div>
+  </form>
+</body>
+</html>
