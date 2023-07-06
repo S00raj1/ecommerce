@@ -38,5 +38,6 @@ def user_logout(request):
     return redirect('home')
 
 
-def forgotPassword(request):
-    pass
+def PasswordResetComplete(request):
+    return redirect('login')
+    

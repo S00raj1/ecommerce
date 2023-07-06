@@ -3,8 +3,7 @@ from . import views
 from .views import SearchResultsView
 
 urlpatterns = [
-    path('', views.home, name="home"),
-    path('category/', views.category, name="category"),
+    path('home/', views.home, name="home"),
     path('about/', views.about, name="about"),
     path('contact/', views.contact, name="contact"),
     path('search/',SearchResultsView.as_view(),name="search"),

@@ -6,7 +6,7 @@
 {% block content %}
 
 {% for category in category %}
-<h2 style="text-align: center; color:#1E293B;">Category: {{category.title}}</h2>
+<h2 style="text-align: center; color:#1E293B;" id="{{category}}">Category: {{category.title}}</h2>
 <hr style="color: #1E293B;">
 <div class="container" style="display: flex; justify-content: space-evenly;">
     {% for i in item %}

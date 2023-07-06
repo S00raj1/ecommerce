@@ -2,6 +2,8 @@
 <html>
 <head>
   <title>Login Page</title>
+  {% block header %}
+  {% endblock %}
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -59,13 +61,15 @@
 
     .signup-link a,
     .forgot-password-link a {
-      color: #4CAF50;
+      color: black;
       text-decoration: none;
     }
   </style>
 </head>
 <body>
-  <h2>Login</h2>
+{% block content %}
+<div class="change" >
+  <h2 style="margin-top: 100px;">Login</h2>
   <form method="post">
     {% csrf_token %}
     <label for="username">Username:</label>
@@ -81,8 +85,10 @@
     </div>
 
     <div class="forgot-password-link">
-      <a href="{% url 'forgotpassword' %}">Forgot password?</a>
+      <a href="{% url 'password-reset' %}">Forgot password?</a>
     </div>
   </form>
+</div>
+{% endblock %}
 </body>
 </html>

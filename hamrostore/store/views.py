@@ -20,22 +20,17 @@ def home(request):
     return render(request, 'home.html', content)
         
 
-
-def category(request):
-    content = {
-        'title' : 'category'
-    }
-    return render(request,'category.html',content)
-
 def about(request):
     content = {
-        'title' : 'about us'
+        'title' : 'about us',
+        'category' : Category.objects.all(),
     }
     return render(request,'about.html',content)
 
 def contact(request):
     content = {
-        'title' : 'contact us'
+        'title' : 'contact us',
+        'category' : Category.objects.all(),
     }
     return render(request,'contact.html',content)
 
@@ -55,12 +50,11 @@ class SearchResultsView(ListView):
 def detail(request,id):
     detail = Product.objects.get(id=id)
 
-    return render(request,'detail.html',{'detail':detail,'title':'details'})
+    return render(request,'detail.html',{'detail':detail,'title':'details','category' : Category.objects.all(),})
 
 
 @login_required(login_url='login')
 def add_to_cart(request,id):
-    
     item = get_object_or_404(Product,id=id)
     order_item,created = Cart.objects.get_or_create(
         item=item,
