@@ -56,7 +56,7 @@
     </style>
 </head>
 <body>
-    <header>
+    <header >
         <nav>
             <ul>
                 <li><a href="{% url 'home' %}"> Home </a></li>
@@ -72,7 +72,7 @@
                 <li><a href="{% url 'contact' %}"> Contact us </a></li>
             </ul>
         </nav>
-        <div class="right">
+        <div class="right" style="display: flex; justify-content: space-evenly;">
             <div class="search-form">
                 <form action="{% url 'search' %}" method="get">
                     <input type="text" name="search" required>
@@ -82,7 +82,36 @@
             <div class="cart">
                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="30" viewBox="0 0 512 512"> <a href="{% url 'cartview' %}" style="text-decoration: none; color:white;"><path fill="currentColor" d="M160 96.039v32h304v63.345l-35.5 112.655H149.932L109.932 16H16v32h66.068l40 288.039h329.9L496 196.306V96.039H160zm16.984 272.305a64.073 64.073 0 0 0-64 64a64 64 0 0 0 128 0a64.072 64.072 0 0 0-64-64Zm0 96a32 32 0 1 1 32-32a32.038 32.038 0 0 1-32 32Zm224-96a64.073 64.073 0 0 0-64 64a64 64 0 0 0 128 0a64.072 64.072 0 0 0-64-64Zm0 96a32 32 0 1 1 32-32a32.038 32.038 0 0 1-32 32Z"/></a> </svg>
             </div>
-            {% if request.user.is_authenticated %}
+            <li class="dropdown" style="list-style: none;">
+                {% if request.user.is_authenticated %}
+                {% for profile in profile %}
+                <a href="#"> <img src="{{profile.avatar.url}} "  style="width: 30px; height: 30px; border-radius: 50px;"> </a>
+                <div class="dropdown-content" >
+                    <div class="login">
+                        <a href="{% url 'profile' %}" style="text-decoration: none; color: black;">Profile</a>
+                    </div>
+                    {% if request.user.is_authenticated %}
+                    <div class="login">
+                        <a href="{% url 'logout' %}" style="text-decoration: none; color: black;">logout</a>
+                    </div>
+                    {% else %}
+                    <div class="login">
+                        <a href="{% url 'login' %}" style="text-decoration: none; color: black;">login</a>
+                    </div>
+                    {% endif %}
+        
+                    <div class="login">
+                        <a href="{% url 'change_password' %}" style="text-decoration: none; color: black;">Change password</a>
+                    </div>
+                    {% endfor %}
+                    {% else %}
+                    <div class="login">
+                        <a href="{% url 'login' %}" style="text-decoration: none; color: white;">login</a>
+                    </div>
+                    {% endif %}
+                </div>
+            </li>
+            <!-- {% if request.user.is_authenticated %}
             <div class="login">
                 <button> <a href="{% url 'logout' %}" style="text-decoration: none; color: black;">logout</a></button>
             </div>
@@ -91,10 +120,10 @@
                 <button> <a href="{% url 'login' %}" style="text-decoration: none; color: black;">login</a></button>
             </div>
 
-            {% endif %}
-            <div class="login">
+            {% endif %} -->
+            <!-- <div class="login">
                 <button> <a href="{% url 'change_password' %}" style="text-decoration: none; color: black;">Change password</a></button>
-            </div>
+            </div> -->
 
         </div>
 

@@ -65,7 +65,8 @@
 </head>
 <body>
   <h2 style="margin-top: 100px;">Create an Account</h2>
-  <form action="/signup" method="post">
+  <form  method="post">
+    {% csrf_token %}
     <label for="first-name">First Name:</label>
     <input type="text" id="first-name" name="fname" required>
 
@@ -85,7 +86,9 @@
     <input type="password" id="confirm-password" name="password1" required>
 
     <input type="submit" value="Sign Up">
-
+    {% for messages in messages %}
+      <p style="color: red;">{{messages}}</p>
+    {% endfor %}
     <div class="login-link">
       <a href="{% url 'login' %}">Already have an account? Login</a>
     </div>

@@ -5,6 +5,8 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q, F, Sum
 from .models import *
+import accounts
+from accounts.models import Profile
 # Create your views here.
 
 
@@ -14,6 +16,7 @@ def home(request):
         'title': 'home',
         'item' : Product.objects.all(),
         'category' : Category.objects.all(),
+        'profile' : Profile.objects.filter(user = request.user.id),
         'page' : 'logout'
     }
    
@@ -24,6 +27,7 @@ def about(request):
     content = {
         'title' : 'about us',
         'category' : Category.objects.all(),
+        'profile' : Profile.objects.filter(user=request.user),
     }
     return render(request,'about.html',content)
 
@@ -31,6 +35,7 @@ def contact(request):
     content = {
         'title' : 'contact us',
         'category' : Category.objects.all(),
+        'profile' : Profile.objects.filter(user=request.user),
     }
     return render(request,'contact.html',content)
 
@@ -50,7 +55,7 @@ class SearchResultsView(ListView):
 def detail(request,id):
     detail = Product.objects.get(id=id)
 
-    return render(request,'detail.html',{'detail':detail,'title':'details','category' : Category.objects.all(),})
+    return render(request,'detail.html',{'detail':detail,'title':'details','category' : Category.objects.all(),'profile' : Profile.objects.filter(user=request.user),})
 
 
 @login_required(login_url='login')
@@ -124,7 +129,8 @@ def cartView(request):
     content={
         'title': 'cart',
         'item':item,
-        'total' : item.aggregate(Sum('total'))['total__sum']
+        'total' : item.aggregate(Sum('total'))['total__sum'],
+        'profile' : Profile.objects.filter(user=request.user),
     }
     return render(request,'cart.html',content)
 
@@ -150,6 +156,7 @@ def checkout(request):
     content = {
         'title' : 'checkout',
         'item' : item,
-        'total' : item.aggregate(Sum('total'))['total__sum']
+        'total' : item.aggregate(Sum('total'))['total__sum'],
+        'profile' : Profile.objects.filter(user=request.user),
     }
     return render(request,"checkout1.html",content)

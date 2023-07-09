@@ -79,6 +79,9 @@
     <input type="password" id="password" name="pass1" required>
 
     <input type="submit" value="Log In">
+    {% for messages in messages %}
+      <p style="color: red;">{{messages}}</p>
+    {% endfor %}
 
     <div class="signup-link">
       <a href="{% url 'signup' %}">Don't have an account? Sign up</a>

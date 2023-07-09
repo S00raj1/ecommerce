@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% for profile in profile %}
+<style>
+    
+    .profile-container {
+      margin-top: 50px;
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    
+    .profile-picture {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      margin: 0 auto;
+      background-color: #ccc;
+      overflow: hidden;
+    }
+    
+    .profile-picture img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .profile-name {
+      text-align: center;
+      font-size: 24px;
+      margin-top: 10px;
+    }
+    
+    .profile-details {
+      margin-top: 20px;
+    }
+    
+    .profile-details h4 {
+      margin-bottom: 5px;
+    }
+    
+    .profile-details p {
+      margin-top: 0;
+    }
+</style>
+<div class="body" style="height: 70vh; ">
+<div class="profile-container" style="margin-top: 100px;">
+    <div class="profile-picture">
+        <img src="{{profile.avatar.url}}">
+    </div>
+    <div class="profile-details">
+      <p>Name: {{profile.user.first_name}} {{profile.user.last_name}}</p>
+      <p>Address: {{profile.address}}</p>
+      <p>Phone Number: {{profile.phone}}</p>
+      <p>Email: {{profile.user.email}}</p>
+    </div>
+</div>
+{% endfor %}
+</div>
+{% endblock %}
